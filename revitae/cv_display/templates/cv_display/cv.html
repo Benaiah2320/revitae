@@ -1,0 +1,28 @@
+{%  extends 'base.html' %}
+{% block title%}{{ resume.first_name }}'d Resume{% endblock %}
+
+{% block body %}
+<h1>{{ resume.first_name }} {{resume.last_name}}</h1>
+<h2>{{ resume.title }}</h2>
+<h2>{{ resume.city }}, {{ resume.state }} {{ resume.zip }}</h2>
+<br />
+<p>{{ resume.summary }}</p>
+<br />
+{% if resume.workhistory_set %}
+    {% for wh in resume.workhistory_set.all %}
+
+        <h3>{{ wh.title }} at {{ wh.org_name }} in {{ wh.org_city }}, {{ wh.org_state }}</h3>
+        <h4>{{ wh.hook }} from {{ wh.start_date }} to {% if wh.current %}present{% else %}{{ wh.end_date }}{% endif %}</h4>
+
+        <ul>
+            {% if wh.positiondetails_set %}
+                {% for pd in wh.positiondetails_set.all %}
+                    <li>{{ pd.description }}</li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+
+    {% endfor %}
+
+{% endif %}
+{% endblock %}

@@ -3,6 +3,7 @@
 from django.db import models
 
 class Resume(models.Model):
+
     first_name = models.CharField(
         verbose_name='First Name',
         max_length=100,
@@ -10,6 +11,11 @@ class Resume(models.Model):
     last_name = models.CharField(
         verbose_name='Last Name',
         max_length=100,
+    )
+    url_name = models.CharField(
+        verbose_name='URL Name',
+        max_length=30,
+        help_text='String to display in URL. Must be unique',
     )
     title = models.CharField(
         verbose_name='Job Title',
@@ -35,6 +41,9 @@ class Resume(models.Model):
         return '%s %s' % (self.first_name, self.last_name)
 
 class WorkHistory(models.Model):
+    hook = models.TextField(
+        help_text='short description of position'
+    )
     org_name = models.CharField(
         verbose_name='Organization Name',
         max_length=100,
@@ -88,6 +97,9 @@ class PositionDetails(models.Model):
 
     def __str__(self):
         return '%20s' % (self.description)
+
+    class Meta:
+        ordering=['-sort']
 
 class Skills(models.Model):
     name = models.CharField(

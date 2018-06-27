@@ -1,4 +1,4 @@
-"""reV URL Configuration
+"""revitae URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.0/topics/http/urls/
@@ -18,5 +18,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('resume/', include('cv_build.urls')),
+    path('cv_display/', include('cv_display.urls')),
+    path('cv_build/', include('cv_build.urls'))
 ]
