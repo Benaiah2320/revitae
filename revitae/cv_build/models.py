@@ -80,6 +80,9 @@ class WorkHistory(models.Model):
         on_delete=models.CASCADE,
     )
 
+    class Meta:
+        ordering = ['start_date']
+
     def __str__(self):
         return '%s %s' % (self.org_name, self.title)
 
@@ -99,7 +102,7 @@ class PositionDetails(models.Model):
         return '%20s' % (self.description)
 
     class Meta:
-        ordering=['-sort']
+        ordering = ['sort']
 
 class Skills(models.Model):
     name = models.CharField(
